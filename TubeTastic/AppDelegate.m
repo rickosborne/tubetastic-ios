@@ -15,7 +15,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
 //    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
+    self.splashViewController = [[SplashViewController alloc] init];
+    self.window.rootViewController = self.splashViewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
