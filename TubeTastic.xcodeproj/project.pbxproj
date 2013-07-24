@@ -1,0 +1,289 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B95CDB5517A01C08004D8939 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95CDB5417A01C08004D8939 /* UIKit.framework */; };
+		B95CDB5717A01C08004D8939 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95CDB5617A01C08004D8939 /* Foundation.framework */; };
+		B95CDB5917A01C08004D8939 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95CDB5817A01C08004D8939 /* CoreGraphics.framework */; };
+		B95CDB5F17A01C08004D8939 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B95CDB5D17A01C08004D8939 /* InfoPlist.strings */; };
+		B95CDB6117A01C08004D8939 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B95CDB6017A01C08004D8939 /* main.m */; };
+		B95CDB6517A01C08004D8939 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B95CDB6417A01C08004D8939 /* AppDelegate.m */; };
+		B95CDB6717A01C08004D8939 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B95CDB6617A01C08004D8939 /* Default.png */; };
+		B95CDB6917A01C08004D8939 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B95CDB6817A01C08004D8939 /* Default@2x.png */; };
+		B95CDB6B17A01C08004D8939 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B95CDB6A17A01C08004D8939 /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B95CDB5117A01C08004D8939 /* TubeTastic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TubeTastic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B95CDB5417A01C08004D8939 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B95CDB5617A01C08004D8939 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B95CDB5817A01C08004D8939 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B95CDB5C17A01C08004D8939 /* TubeTastic-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TubeTastic-Info.plist"; sourceTree = "<group>"; };
+		B95CDB5E17A01C08004D8939 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B95CDB6017A01C08004D8939 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B95CDB6217A01C08004D8939 /* TubeTastic-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TubeTastic-Prefix.pch"; sourceTree = "<group>"; };
+		B95CDB6317A01C08004D8939 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B95CDB6417A01C08004D8939 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B95CDB6617A01C08004D8939 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B95CDB6817A01C08004D8939 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B95CDB6A17A01C08004D8939 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B95CDB4E17A01C08004D8939 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B95CDB5517A01C08004D8939 /* UIKit.framework in Frameworks */,
+				B95CDB5717A01C08004D8939 /* Foundation.framework in Frameworks */,
+				B95CDB5917A01C08004D8939 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B95CDB4817A01C08004D8939 = {
+			isa = PBXGroup;
+			children = (
+				B95CDB5A17A01C08004D8939 /* TubeTastic */,
+				B95CDB5317A01C08004D8939 /* Frameworks */,
+				B95CDB5217A01C08004D8939 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B95CDB5217A01C08004D8939 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B95CDB5117A01C08004D8939 /* TubeTastic.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B95CDB5317A01C08004D8939 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B95CDB5417A01C08004D8939 /* UIKit.framework */,
+				B95CDB5617A01C08004D8939 /* Foundation.framework */,
+				B95CDB5817A01C08004D8939 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B95CDB5A17A01C08004D8939 /* TubeTastic */ = {
+			isa = PBXGroup;
+			children = (
+				B95CDB6317A01C08004D8939 /* AppDelegate.h */,
+				B95CDB6417A01C08004D8939 /* AppDelegate.m */,
+				B95CDB5B17A01C08004D8939 /* Supporting Files */,
+			);
+			path = TubeTastic;
+			sourceTree = "<group>";
+		};
+		B95CDB5B17A01C08004D8939 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B95CDB5C17A01C08004D8939 /* TubeTastic-Info.plist */,
+				B95CDB5D17A01C08004D8939 /* InfoPlist.strings */,
+				B95CDB6017A01C08004D8939 /* main.m */,
+				B95CDB6217A01C08004D8939 /* TubeTastic-Prefix.pch */,
+				B95CDB6617A01C08004D8939 /* Default.png */,
+				B95CDB6817A01C08004D8939 /* Default@2x.png */,
+				B95CDB6A17A01C08004D8939 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B95CDB5017A01C08004D8939 /* TubeTastic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B95CDB6E17A01C08004D8939 /* Build configuration list for PBXNativeTarget "TubeTastic" */;
+			buildPhases = (
+				B95CDB4D17A01C08004D8939 /* Sources */,
+				B95CDB4E17A01C08004D8939 /* Frameworks */,
+				B95CDB4F17A01C08004D8939 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TubeTastic;
+			productName = TubeTastic;
+			productReference = B95CDB5117A01C08004D8939 /* TubeTastic.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B95CDB4917A01C08004D8939 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "rick osborne dot org";
+			};
+			buildConfigurationList = B95CDB4C17A01C08004D8939 /* Build configuration list for PBXProject "TubeTastic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B95CDB4817A01C08004D8939;
+			productRefGroup = B95CDB5217A01C08004D8939 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B95CDB5017A01C08004D8939 /* TubeTastic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B95CDB4F17A01C08004D8939 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B95CDB5F17A01C08004D8939 /* InfoPlist.strings in Resources */,
+				B95CDB6717A01C08004D8939 /* Default.png in Resources */,
+				B95CDB6917A01C08004D8939 /* Default@2x.png in Resources */,
+				B95CDB6B17A01C08004D8939 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B95CDB4D17A01C08004D8939 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B95CDB6117A01C08004D8939 /* main.m in Sources */,
+				B95CDB6517A01C08004D8939 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B95CDB5D17A01C08004D8939 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B95CDB5E17A01C08004D8939 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B95CDB6C17A01C08004D8939 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B95CDB6D17A01C08004D8939 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B95CDB6F17A01C08004D8939 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TubeTastic/TubeTastic-Prefix.pch";
+				INFOPLIST_FILE = "TubeTastic/TubeTastic-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B95CDB7017A01C08004D8939 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TubeTastic/TubeTastic-Prefix.pch";
+				INFOPLIST_FILE = "TubeTastic/TubeTastic-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B95CDB4C17A01C08004D8939 /* Build configuration list for PBXProject "TubeTastic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B95CDB6C17A01C08004D8939 /* Debug */,
+				B95CDB6D17A01C08004D8939 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B95CDB6E17A01C08004D8939 /* Build configuration list for PBXNativeTarget "TubeTastic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B95CDB6F17A01C08004D8939 /* Debug */,
+				B95CDB7017A01C08004D8939 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B95CDB4917A01C08004D8939 /* Project object */;
+}
