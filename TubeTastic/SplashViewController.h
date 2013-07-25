@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SplashView.h"
+#import "TileView.h"
 
 @interface SplashViewController : UIViewController
 // <UIViewControllerRestoration>

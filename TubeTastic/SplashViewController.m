@@ -20,14 +20,16 @@
     if (!self) {
         return self;
     }
-    self.restorationIdentifier = @"SplashViewController";
+//    self.restorationIdentifier = @"SplashViewController";
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 500)];
+    [button setTitle:@"New Game" forState:UIControlStateNormal];
+    [self.view addSubview:button];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,5 +41,18 @@
 //+ (UIViewController *) viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder {
 //    return self;
 //}
+
+- (void)loadView {
+    CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
+    SplashView *splashView = [[SplashView alloc] initWithFrame:appFrame];
+    splashView.backgroundColor = [UIColor blueColor];
+    self.view = splashView;
+    TileView *tileView = [[TileView alloc] initWithFrame:CGRectMake(20, 40, 60, 60)];
+    [self.view addSubview:tileView];
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
 
 @end
