@@ -7,7 +7,11 @@
 
 
 #import <Foundation/Foundation.h>
-
+#import "BaseTile.h"
 
 @interface TileWatcher : NSObject
+
+
+- (void)tile:(BaseTile*)tile powerDidChangeFrom:(Power)fromPower to:(Power)toPower;
+
 @end

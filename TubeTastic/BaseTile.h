@@ -7,6 +7,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "Power.h"
 
 static const NSString* DIRECTION_NORTH = @"N";
 static const NSString* DIRECTION_SOUTH = @"S";
@@ -31,6 +32,12 @@ static const NSDictionary* outletRotationsReverse;
 @end
 
 @interface BaseTile : NSObject
+
+@property(nonatomic, readwrite) Power power;
+@property(nonatomic, readonly) int colNum;
+@property(nonatomic, readonly) int rowNum;
+@property(nonatomic, readonly) int id;
+@property(nonatomic, readonly) NSArray* connectedNeighbors;
 
 + (int)makeIdFromCol:(int)colNum andRow:(int)rowNum;
 + (int)degreesFromDirection:(NSString*)direction;

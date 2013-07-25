@@ -7,7 +7,11 @@
 
 
 #import <Foundation/Foundation.h>
+#import "BaseTile.h"
 
 
 @interface GameBoard : NSObject
+
+- (BaseTile*)tileForCol:(int)colNum andRow:(int)rowNum;
+
 @end

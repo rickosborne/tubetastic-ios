@@ -8,7 +8,6 @@
 
 #import "BaseTile.h"
 #import "GameBoard.h"
-#import "Power.h"
 #import "Outlets.h"
 #import "TileWatcher.h"
 
@@ -53,7 +52,9 @@
 
 @end
 
-@implementation BaseTile {
+
+@implementation BaseTile
+{
     int _colNum;
     int _rowNum;
     int _id;
@@ -63,6 +64,7 @@
     int _outletRotation;
     TileWatcher* _watcher;
 }
+@synthesize power = _power, colNum = _colNum, rowNum = _rowNum, id = _id;
 
 + (void)initialize {
     // yeah, this is ugly
@@ -188,18 +190,39 @@ int unrotateDegrees(int outletRotation, int degrees) {
 }
 
 - (BOOL)hasOutletToDegrees:(int)degrees {
-    BOOL ret = NO;
     int originalDegrees = unrotateDegrees(_outletRotation, degrees);
-    // todo
-    return ret;
+    return [_outlets hasOutletToDegrees:originalDegrees];
+}
+
+- (NSArray *)connectedNeighbors {
+    NSMutableArray *connected = [[NSMutableArray alloc] initWithCapacity:directionCount];
+    for (int degreesNum = 0; degreesNum < directionCount; degreesNum++) {
+        int degrees = outletDegrees[degreesNum];
+        if ([self hasOutletToDegrees:degrees]) {
+            BaseTile *neighbor = [self neighborAtDegrees:degrees];
+            if (neighbor && [neighbor hasOutletToDegrees:reverseDirectionDegrees(degrees)]) {
+                [connected addObject:neighbor];
+            }
+        }
+    }
+    return connected;
 }
 
 - (BaseTile*)neighborAtDegrees:(int)degrees {
-    return nil;
+    OutletOffset *offset = [OutletOffset makeForDegrees:degrees];
+    return [_board tileForCol:_colNum + offset.col andRow:_rowNum + offset.row];
 }
 
-- (Power)power { return _power; }
-- (int)colNum { return _colNum; }
-- (int)rowNum { return _rowNum; }
+- (id)setPower:(Power)power {
+    Power fromPower = _power;
+    if (fromPower != power) {
+        _power = power;
+        if (_watcher) {
+            [_watcher tile:self powerDidChangeFrom:fromPower to:power];
+        }
+    }
+}
+
+
 
 @end

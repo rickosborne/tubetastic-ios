@@ -12,4 +12,9 @@
 @implementation Outlets {
 
 }
+
+- (BOOL)hasOutletToDegrees:(int)degrees {
+    return NO;
+}
+
 @end

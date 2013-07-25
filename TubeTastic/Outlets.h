@@ -10,4 +10,7 @@
 
 
 @interface Outlets : NSObject
+
+- (BOOL)hasOutletToDegrees:(int)degrees;
+
 @end
