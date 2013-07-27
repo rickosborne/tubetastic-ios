@@ -10,6 +10,8 @@
 #import "BaseTile.h"
 #import "TileView.h"
 #import "GamePrefs.h"
+#import "SourceTile.h"
+#import "SinkTile.h"
 
 @implementation TileRenderer
 
@@ -43,7 +45,7 @@ static TileRenderer *singleton;
     }
 //    [backColor set];
     CGContextSetFillColorWithColor(contextRef, backColor.CGColor);
-    if ((tile.power == PowerSource) || (tile.power == PowerSink)) {
+    if ([tile isKindOfClass:SourceTile.class] || [tile isKindOfClass:SinkTile.class]) {
         CGRect circle = CGRectMake(halfSize - radius, halfSize - radius, radius * 2.0, radius * 2.0);
         CGContextFillEllipseInRect(contextRef, circle);
     }
