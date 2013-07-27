@@ -9,7 +9,6 @@
 #import "BaseTile.h"
 #import "GameBoard.h"
 #import "Outlets.h"
-#import "TileWatcher.h"
 #import "OutletOffset.h"
 
 @implementation BaseTile
@@ -111,7 +110,7 @@ int unrotateDegrees(int outletRotation, int degrees) {
     return -1;
 }
 
-- (id)initForBoard:(GameBoard*)board withCol:(int)colNum withRow:(int)rowNum {
+- (BaseTile *)initForBoard:(GameBoard*)board withCol:(int)colNum withRow:(int)rowNum {
     self = [super init];
     if (!self) { return self; }
     _colNum = colNum;
@@ -122,6 +121,7 @@ int unrotateDegrees(int outletRotation, int degrees) {
     _watcher = nil;
     _outletRotation = 0;
     _outlets = [[Outlets alloc] init];
+    return self;
 }
 
 - (NSString*)description {
@@ -163,7 +163,7 @@ int unrotateDegrees(int outletRotation, int degrees) {
     return [_board tileForCol:_colNum + offset.col andRow:_rowNum + offset.row];
 }
 
-- (id)setPower:(Power)power {
+- (void)setPower:(Power)power {
     Power fromPower = _power;
     if (fromPower != power) {
         _power = power;

@@ -10,8 +10,17 @@
 #import "Power.h"
 
 @class GameBoard;
-@class TileWatcher;
 @class Outlets;
+@class BaseTile;
+
+@protocol TileWatcher
+
+- (void)tile:(BaseTile *)tile powerDidChangeFrom:(Power)fromPower to:(Power)toPower;
+- (void)tile:(BaseTile *)tile movedFromCol:(int)fromColNum fromRow:(int)fromRowNum toCol:(int)toColNum toRow:(int)toRowNum;
+- (void)tile:(BaseTile *)tile didSpinFrom:(int)fromDegrees to:(int)toDegrees;
+- (void)tileDidVanish:(BaseTile *)tile;
+
+@end
 
 static const NSString* DIRECTION_NORTH = @"N";
 static const NSString* DIRECTION_SOUTH = @"S";
@@ -34,18 +43,18 @@ static const NSDictionary* outletRotationsReverse;
     int _colNum;
     int _rowNum;
     int _id;
-    GameBoard* _board;
+    __weak GameBoard* _board;
     Power _power;
     Outlets* _outlets;
     int _outletRotation;
-    TileWatcher* _watcher;
+    __weak id <TileWatcher> _watcher;
 }
 @property(nonatomic, readwrite) Power power;
 @property(nonatomic, readonly) int colNum;
 @property(nonatomic, readonly) int rowNum;
 @property(nonatomic, readonly) int id;
-@property(nonatomic, readonly) NSArray* connectedNeighbors;
-@property(nonatomic, readwrite) TileWatcher* watcher;
+@property(nonatomic, readonly, weak) NSArray* connectedNeighbors;
+@property(nonatomic, readwrite, weak) id <TileWatcher> watcher;
 @property(nonatomic, readwrite) int bits;
 
 int unrotateDegrees(int outletRotation, int degrees);
