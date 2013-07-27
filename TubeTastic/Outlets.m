@@ -28,10 +28,10 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"%s%s%s%s",
-        (_bits & OutletBitNorth) != 0 ? "N" : "",
-        (_bits & OutletBitEast)  != 0 ? "E" : "",
-        (_bits & OutletBitSouth) != 0 ? "S" : "",
-        (_bits & OutletBitWest)  != 0 ? "W" : ""
+        (_bits & OutletBitNorth) != 0 ? "N" : "-",
+        (_bits & OutletBitEast)  != 0 ? "E" : "-",
+        (_bits & OutletBitSouth) != 0 ? "S" : "-",
+        (_bits & OutletBitWest)  != 0 ? "W" : "-"
     ];
 }
 

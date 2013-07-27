@@ -124,7 +124,7 @@ int unrotateDegrees(int outletRotation, int degrees) {
 }
 
 - (NSString*)description {
-    NSMutableString *connected = [[NSMutableString alloc] initWithFormat:@"BaseTile %d,%d %@", _colNum, _rowNum, _outlets];
+    NSMutableString *connected = [[NSMutableString alloc] initWithFormat:@"%@ %d,%d %@", self.class, _colNum, _rowNum, _outlets];
     for (int degreesNum = 0; degreesNum < directionCount; degreesNum++) {
         int degrees = outletDegrees[degreesNum];
         if ([self hasOutletToDegrees:degrees]) {

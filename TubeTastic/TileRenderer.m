@@ -17,13 +17,12 @@
 @implementation TileRenderer
 
 static TileRenderer *singleton;
-static const float PI = 3.14159265f;
-static const float DEGREES_TO_RADIANS = PI / 180.0;
+static const float DEGREES_TO_RADIANS = (float) M_PI / 180.0f;
 static const float RADIANS_NORTH1 = -90.0 * DEGREES_TO_RADIANS;
 static const float RADIANS_NORTH2 = 270.0 * DEGREES_TO_RADIANS;
 static const float RADIANS_EAST = 0;
 static const float RADIANS_SOUTH = 90.0 * DEGREES_TO_RADIANS;
-static const float RADIANS_WEST = PI;
+static const float RADIANS_WEST = (float) M_PI;
 
 + (TileRenderer *)defaultRenderer {
     if (!singleton) {

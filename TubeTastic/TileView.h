@@ -33,6 +33,7 @@
 //    TileRenderer* _renderer;
     float _midpoint;
     float _size;
+    NSUInteger _totalSpins;
     int _spinRemain;
     BOOL _isSpinning;
     BOOL _isVanishing;

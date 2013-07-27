@@ -18,7 +18,9 @@
     return self;
 }
 
-
+- (BOOL)isWorking { return NO; }
+- (void)interruptSweep {  }
+- (void)readyForSweep {  }
 
 /*
 // Only override drawRect: if you perform custom drawing.

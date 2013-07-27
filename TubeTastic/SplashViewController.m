@@ -31,9 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 200, 500)];
-    [button setTitle:@"New Game" forState:UIControlStateNormal];
-    [self.view addSubview:button];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,13 +46,13 @@
 - (void)loadView {
     CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
     SplashView *splashView = [[SplashView alloc] initWithFrame:appFrame];
-    splashView.backgroundColor = [UIColor blueColor];
+    splashView.backgroundColor = [UIColor blackColor];
     self.view = splashView;
     TileView *tileView1 = [[TileView alloc] initWithFrame:CGRectMake(0, 40, 100, 100)];
     tileView1.tile = [[SourceTile alloc] initForBoard:nil withCol:0 withRow:0];
     [self.view addSubview:tileView1];
     TileView *tileView2 = [[TileView alloc] initWithFrame:CGRectMake(100, 40, 100, 100)];
-    tileView2.tile = [[TubeTile alloc] initForBoard:nil withCol:0 withRow:0 withBits:15];
+    tileView2.tile = [[TubeTile alloc] initForBoard:nil withCol:0 withRow:0 withBits:14];
     [self.view addSubview:tileView2];
     TileView *tileView3 = [[TileView alloc] initWithFrame:CGRectMake(200, 40, 100, 100)];
     tileView3.tile = [[SinkTile alloc] initForBoard:nil withCol:0 withRow:0];

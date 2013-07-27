@@ -22,6 +22,7 @@
 		B977D54217A04F18000D872B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B977D54117A04F18000D872B /* SettingsViewController.m */; };
 		FBF02142CB47A406D5A96012 /* GameBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF0221AD6E4E46CB8B1583D /* GameBoard.m */; };
 		FBF022A6671E6FAB68B85B3D /* OutletOffset.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF02858041ADC9EA00C9466 /* OutletOffset.m */; };
+		FBF025668601D483D699BE60 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBF02145F9E3C2104569BDF0 /* QuartzCore.framework */; };
 		FBF02837D4C06EFF62DDED9D /* SinkTile.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF029B1BC92AF7C4ADE2947 /* SinkTile.m */; };
 		FBF028BBB0BE8C88648873EE /* TubeTile.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF02F6DBBC97FD35BC9A654 /* TubeTile.m */; };
 		FBF028C6AAD5D4ECC989D6DC /* SourceTile.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF0244D887E461E84A5E82B /* SourceTile.m */; };
@@ -58,6 +59,7 @@
 		B977D54017A04F18000D872B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		B977D54117A04F18000D872B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FBF020B7A4F50586FB54A216 /* GamePrefs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePrefs.m; sourceTree = "<group>"; };
+		FBF02145F9E3C2104569BDF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FBF0221AD6E4E46CB8B1583D /* GameBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBoard.m; sourceTree = "<group>"; };
 		FBF0244D887E461E84A5E82B /* SourceTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceTile.m; sourceTree = "<group>"; };
 		FBF024E83CAD4A931347B590 /* OutletOffset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutletOffset.h; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				B95CDB5517A01C08004D8939 /* UIKit.framework in Frameworks */,
 				B95CDB5717A01C08004D8939 /* Foundation.framework in Frameworks */,
 				B95CDB5917A01C08004D8939 /* CoreGraphics.framework in Frameworks */,
+				FBF025668601D483D699BE60 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +126,7 @@
 				B95CDB5417A01C08004D8939 /* UIKit.framework */,
 				B95CDB5617A01C08004D8939 /* Foundation.framework */,
 				B95CDB5817A01C08004D8939 /* CoreGraphics.framework */,
+				FBF02145F9E3C2104569BDF0 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
