@@ -10,11 +10,13 @@
 
 
 @implementation Outlets {
-
+    int _bits;
 }
+@synthesize bits = _bits;
 
 - (BOOL)hasOutletToDegrees:(int)degrees {
     return NO;
 }
+
 
 @end

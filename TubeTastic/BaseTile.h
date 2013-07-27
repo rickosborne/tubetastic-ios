@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "Power.h"
 
+@class GameBoard;
+@class TileWatcher;
+
 static const NSString* DIRECTION_NORTH = @"N";
 static const NSString* DIRECTION_SOUTH = @"S";
 static const NSString* DIRECTION_EAST  = @"E";
@@ -24,13 +27,6 @@ static const NSDictionary* directionFromDegrees;
 static const NSDictionary* outletOffsets;
 static const NSDictionary* outletRotationsReverse;
 
-@interface OutletOffset : NSObject
-
-@property int col;
-@property int row;
-
-@end
-
 @interface BaseTile : NSObject
 
 @property(nonatomic, readwrite) Power power;
@@ -38,8 +34,23 @@ static const NSDictionary* outletRotationsReverse;
 @property(nonatomic, readonly) int rowNum;
 @property(nonatomic, readonly) int id;
 @property(nonatomic, readonly) NSArray* connectedNeighbors;
+@property(nonatomic, readwrite) TileWatcher* watcher;
+
+int unrotateDegrees(int outletRotation, int degrees);
+int reverseDirectionDegrees(int degrees);
 
 + (int)makeIdFromCol:(int)colNum andRow:(int)rowNum;
 + (int)degreesFromDirection:(NSString*)direction;
+
+- (id)initForBoard:(GameBoard*)board withCol:(int)colNum withRow:(int)rowNum;
+- (BaseTile*)neighborAtDegrees:(int)degrees;
+- (NSArray *)connectedNeighbors;
+- (BOOL)hasOutletToDegrees:(int)degrees;
+- (BOOL)isSourced;
+- (BOOL)isSunk;
+- (BOOL)isUnpowered;
+- (void)setCol:(int)colNum andRow:(int)rowNum;
+- (void)spin;
+- (void)vanish;
 
 @end

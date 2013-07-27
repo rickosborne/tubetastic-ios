@@ -10,48 +10,7 @@
 #import "GameBoard.h"
 #import "Outlets.h"
 #import "TileWatcher.h"
-
-@implementation OutletOffset
-
-- (id)init { return nil; };
-
-- (id)initWithCol:(int)colNum andRow:(int)rowNum {
-    if ((self = [super init])) {
-        self.col = colNum;
-        self.row = rowNum;
-    }
-    return self;
-}
-
-+ (OutletOffset *)makeForCol:(int)colNum andRow:(int)rowNum {
-    return [[OutletOffset alloc] initWithCol:colNum andRow:rowNum];
-}
-
-+ (OutletOffset *)makeForDegrees:(int)degrees {
-    OutletOffset *outletOffset = [OutletOffset makeForCol:0 andRow:0];
-    switch (degrees) {
-        case DEGREES_NORTH:
-            outletOffset.col = 0;
-            outletOffset.row = -1;
-            break;
-        case DEGREES_EAST:
-            outletOffset.col = 1;
-            outletOffset.row = 0;
-            break;
-        case DEGREES_SOUTH:
-            outletOffset.col = 0;
-            outletOffset.row = 1;
-            break;
-        case DEGREES_WEST:
-            outletOffset.col = -1;
-            outletOffset.row = 0;
-            break;
-    }
-    return outletOffset;
-}
-
-@end
-
+#import "OutletOffset.h"
 
 @implementation BaseTile
 {
@@ -64,7 +23,7 @@
     int _outletRotation;
     TileWatcher* _watcher;
 }
-@synthesize power = _power, colNum = _colNum, rowNum = _rowNum, id = _id;
+@synthesize power = _power, colNum = _colNum, rowNum = _rowNum, id = _id, watcher = _watcher;
 
 + (void)initialize {
     // yeah, this is ugly
@@ -223,6 +182,38 @@ int unrotateDegrees(int outletRotation, int degrees) {
     }
 }
 
+- (BOOL)isSourced { return (_power & PowerSource); }
+- (BOOL)isSunk { return (_power & PowerSink); }
+- (BOOL)isUnpowered { return (_power == PowerNone); }
+- (int)bits { return _outlets.bits; }
+- (void)setBits:(int)bits { _outlets.bits = bits; }
 
+- (void)setCol:(int)colNum andRow:(int)rowNum {
+    int fromColNum = _colNum;
+    int fromRowNum = _rowNum;
+    if ((fromColNum != colNum) || (fromRowNum != rowNum)) {
+        _colNum = colNum;
+        _rowNum = rowNum;
+        _id = [BaseTile makeIdFromCol:colNum andRow:rowNum];
+        if (_watcher) {
+            [_watcher tile:self movedFromCol:fromColNum fromRow:fromRowNum toCol:colNum toRow:rowNum];
+        }
+    }
+}
+
+- (void)spin {
+    int fromDegrees = _outletRotation;
+    _outletRotation += 90;
+    if (_watcher) {
+        [_watcher tile:self didSpinFrom:fromDegrees to:_outletRotation];
+    }
+    _outletRotation %= 360;
+}
+
+- (void)vanish {
+    if (_watcher) {
+        [_watcher tileDidVanish:self];
+    }
+}
 
 @end

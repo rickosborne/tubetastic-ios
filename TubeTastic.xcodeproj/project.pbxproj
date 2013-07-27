@@ -21,6 +21,7 @@
 		B977D53F17A04F11000D872B /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B977D53E17A04F11000D872B /* AboutViewController.m */; };
 		B977D54217A04F18000D872B /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B977D54117A04F18000D872B /* SettingsViewController.m */; };
 		FBF02142CB47A406D5A96012 /* GameBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF0221AD6E4E46CB8B1583D /* GameBoard.m */; };
+		FBF022A6671E6FAB68B85B3D /* OutletOffset.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF02858041ADC9EA00C9466 /* OutletOffset.m */; };
 		FBF02A3711221018BB415311 /* TileView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF02B3BDCE6F4523FE1F072 /* TileView.m */; };
 		FBF02C2E86FB965B90E2C83A /* SplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF02F373C7B0188AA574414 /* SplashView.m */; };
 		FBF02C6DBA5E4918F7F921F5 /* BaseTile.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF02E2CBF7C33596BC0B5D8 /* BaseTile.m */; };
@@ -51,9 +52,11 @@
 		B977D54017A04F18000D872B /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		B977D54117A04F18000D872B /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		FBF0221AD6E4E46CB8B1583D /* GameBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBoard.m; sourceTree = "<group>"; };
+		FBF024E83CAD4A931347B590 /* OutletOffset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutletOffset.h; sourceTree = "<group>"; };
 		FBF0251A4CB37E410ECAD3E9 /* TileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileView.h; sourceTree = "<group>"; };
 		FBF025B4B7C436F52CC2042F /* TileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileWatcher.m; sourceTree = "<group>"; };
 		FBF025CB99EB5A48C9628B90 /* SplashView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashView.h; sourceTree = "<group>"; };
+		FBF02858041ADC9EA00C9466 /* OutletOffset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutletOffset.m; sourceTree = "<group>"; };
 		FBF029CCEB439037050C6BE9 /* TileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileWatcher.h; sourceTree = "<group>"; };
 		FBF02A1732E3265484AA9737 /* Outlets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Outlets.h; sourceTree = "<group>"; };
 		FBF02A1AFF3FEBB7C39EBE73 /* Power.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Power.h; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				FBF02A1732E3265484AA9737 /* Outlets.h */,
 				FBF025B4B7C436F52CC2042F /* TileWatcher.m */,
 				FBF029CCEB439037050C6BE9 /* TileWatcher.h */,
+				FBF02858041ADC9EA00C9466 /* OutletOffset.m */,
+				FBF024E83CAD4A931347B590 /* OutletOffset.h */,
 			);
 			path = TubeTastic;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				FBF02142CB47A406D5A96012 /* GameBoard.m in Sources */,
 				FBF02EAF9F852F763FB10E12 /* Outlets.m in Sources */,
 				FBF02EA6D1F2F77336FE81D0 /* TileWatcher.m in Sources */,
+				FBF022A6671E6FAB68B85B3D /* OutletOffset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

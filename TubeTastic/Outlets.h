@@ -11,6 +11,8 @@
 
 @interface Outlets : NSObject
 
+@property (nonatomic, readwrite) int bits;
+
 - (BOOL)hasOutletToDegrees:(int)degrees;
 
 @end
