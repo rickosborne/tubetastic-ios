@@ -17,7 +17,7 @@
         return self;
     }
     _power = PowerSource;
-    super.bits = OutletBitWest;
+    super.bits = OutletBitEast;
     return self;
 }
 
