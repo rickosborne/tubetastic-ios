@@ -25,24 +25,12 @@
 
 @class TileRenderer;
 @class TileActorWatcher;
-static const float SIZE_PADDING    = 1 / 16;
-static const float SIZE_ARCWIDTH   = 1 / 8;
-static const float DURATION_VANISH = 0.500;
-static const float DURATION_DROP   = 0.250;
-static const float DURATION_APPEAR = DURATION_VANISH + DURATION_DROP;
-static const float DURATION_SPIN   = 0.150;
-static const float DEGREES_SPIN    = -90;
-static const float DEGREES_CIRCLE  = -360;
-static const float OPACITY_VANISH  = 0;
-static const float OPACITY_APPEAR  = 1;
-static const float SCALE_VANISH    = 0;
-static const float SCALE_APPEAR    = 1;
 
 @interface TileView : UIView <TileWatcher> {
 @protected
     float _padding;
-    __weak BaseTile* _tile;
-    __weak TileRenderer* _renderer;
+    BaseTile* _tile;
+//    TileRenderer* _renderer;
     float _midpoint;
     float _size;
     int _spinRemain;
@@ -59,7 +47,33 @@ static const float SCALE_APPEAR    = 1;
 @property (nonatomic, readonly) BOOL isDropping;
 @property (nonatomic, readwrite, weak) id<TileViewWatcher> watcher;
 @property (nonatomic, readonly) float size;
-@property (nonatomic, readwrite, weak) TileRenderer *renderer;
-@property (nonatomic, readwrite, weak) BaseTile *tile;
+//@property (nonatomic, readwrite) TileRenderer *renderer;
+@property (nonatomic, readwrite) BaseTile *tile;
+
+@property (nonatomic, readwrite) float SIZE_PADDING;
+@property (nonatomic, readwrite) float SIZE_ARCWIDTH;
+@property (nonatomic, readwrite) float DURATION_VANISH;
+@property (nonatomic, readwrite) float DURATION_DROP;
+@property (nonatomic, readwrite) float DURATION_APPEAR;
+@property (nonatomic, readwrite) float DURATION_SPIN;
+@property (nonatomic, readwrite) float DEGREES_SPIN;
+@property (nonatomic, readwrite) float DEGREES_CIRCLE;
+@property (nonatomic, readwrite) float OPACITY_VANISH;
+@property (nonatomic, readwrite) float OPACITY_APPEAR;
+@property (nonatomic, readwrite) float SCALE_VANISH;
+@property (nonatomic, readwrite) float SCALE_APPEAR;
+
++(float)SIZE_PADDING;
++(float)SIZE_ARCWIDTH;
++(float)DURATION_VANISH;
++(float)DURATION_DROP;
++(float)DURATION_APPEAR;
++(float)DURATION_SPIN;
++(float)DEGREES_SPIN;
++(float)DEGREES_CIRCLE;
++(float)OPACITY_VANISH;
++(float)OPACITY_APPEAR;
++(float)SCALE_VANISH;
++(float)SCALE_APPEAR;
 
 @end

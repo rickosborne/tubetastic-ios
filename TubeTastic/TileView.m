@@ -8,10 +8,31 @@
 
 #import "TileView.h"
 #import "BoardView.h"
+#import "TileRenderer.h"
 
 @implementation TileView
 
-@synthesize isAppearing = _isAppearing, isVanishing = _isVanishing, isDropping = _isDropping, isSpinning = _isSpinning, watcher = _watcher, size = _size, renderer = _renderer, tile = _tile;
+static TileView *singleton = nil;
+
+@synthesize isAppearing = _isAppearing, isVanishing = _isVanishing, isDropping = _isDropping, isSpinning = _isSpinning, watcher = _watcher, size = _size, tile = _tile;
+
++ (void)initialize {
+    if (!singleton) {
+        singleton = [[TileView alloc] init];
+        singleton.SIZE_PADDING    = 1.0 / 16.0;
+        singleton.SIZE_ARCWIDTH   = 1.0 / 8.0;
+        singleton.DURATION_VANISH = 0.500;
+        singleton.DURATION_DROP   = 0.250;
+        singleton.DURATION_APPEAR = singleton.DURATION_VANISH + singleton.DURATION_DROP;
+        singleton.DURATION_SPIN   = 0.150;
+        singleton.DEGREES_SPIN    = -90;
+        singleton.DEGREES_CIRCLE  = -360;
+        singleton.OPACITY_VANISH  = 0;
+        singleton.OPACITY_APPEAR  = 1;
+        singleton.SCALE_VANISH    = 0;
+        singleton.SCALE_APPEAR    = 1;
+    }
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -28,7 +49,7 @@
 //    self.autoresizesSubviews = YES;
     _padding = 0;
     _tile = nil;
-    _renderer = nil;
+//    _renderer = nil;
     _midpoint = 0;
     _size = 0;
     _spinRemain = 0;
@@ -45,10 +66,11 @@
 {
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect frame = self.bounds;
-    CGContextSetLineWidth(context, frame.size.width * 0.125);
-    [[UIColor redColor] set];
-    UIRectFrame(frame);
+//    CGRect bounds = self.bounds;
+//    CGContextSetLineWidth(context, bounds.size.width * 0.125);
+//    [[UIColor redColor] set];
+//    UIRectFrame(frame);
+    [TileRenderer drawTile:_tile inContext:context withBounds:self.bounds];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -102,7 +124,7 @@
     super.frame = frame;
     _size = frame.size.width;
     _midpoint = floorf(_size * 0.5f);
-    _padding = floorf(_size * SIZE_PADDING);
+    _padding = floorf(_size * TileView.SIZE_PADDING);
 }
 
 - (NSString *)description {
@@ -167,6 +189,17 @@
     // todo: animation
 }
 
-
++ (float)SIZE_PADDING { return singleton.SIZE_PADDING; }
++ (float)SIZE_ARCWIDTH { return singleton.SIZE_ARCWIDTH; }
++ (float)DURATION_VANISH { return singleton.DURATION_VANISH; }
++ (float)DURATION_DROP { return singleton.DURATION_DROP; }
++ (float)DURATION_APPEAR { return singleton.DURATION_APPEAR; }
++ (float)DURATION_SPIN { return singleton.DURATION_SPIN; }
++ (float)DEGREES_SPIN { return singleton.DEGREES_SPIN; }
++ (float)DEGREES_CIRCLE { return singleton.DEGREES_CIRCLE; }
++ (float)OPACITY_VANISH { return singleton.OPACITY_VANISH; }
++ (float)OPACITY_APPEAR { return singleton.OPACITY_APPEAR; }
++ (float)SCALE_VANISH { return singleton.SCALE_VANISH; }
++ (float)SCALE_APPEAR { return singleton.SCALE_APPEAR; }
 
 @end

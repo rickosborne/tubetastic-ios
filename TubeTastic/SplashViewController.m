@@ -7,6 +7,9 @@
 //
 
 #import "SplashViewController.h"
+#import "TileRenderer.h"
+#import "SourceTile.h"
+#import "SinkTile.h"
 
 @interface SplashViewController ()
 
@@ -47,8 +50,18 @@
     SplashView *splashView = [[SplashView alloc] initWithFrame:appFrame];
     splashView.backgroundColor = [UIColor blueColor];
     self.view = splashView;
-    TileView *tileView = [[TileView alloc] initWithFrame:CGRectMake(20, 40, 60, 60)];
-    [self.view addSubview:tileView];
+    TileView *tileView1 = [[TileView alloc] initWithFrame:CGRectMake(20, 40, 60, 60)];
+    tileView1.tile = [[SourceTile alloc] initForBoard:nil withCol:0 withRow:0];
+//    tileView1.renderer = [[TileRenderer alloc] init];
+    [self.view addSubview:tileView1];
+//    TileView *tileView2 = [[TileView alloc] initWithFrame:CGRectMake(80, 40, 60, 60)];
+//    tileView2.tile = [[TubeTile alloc] initForBoard:nil withCol:0 withRow:0];
+//    tileView2.renderer = [[TileRenderer alloc] init];
+//    [self.view addSubview:tileView2];
+    TileView *tileView3 = [[TileView alloc] initWithFrame:CGRectMake(140, 40, 60, 60)];
+    tileView3.tile = [[SinkTile alloc] initForBoard:nil withCol:0 withRow:0];
+//    tileView3.renderer = [[TileRenderer alloc] init];
+    [self.view addSubview:tileView3];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
