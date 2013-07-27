@@ -22,8 +22,9 @@ typedef NS_ENUM(NSUInteger, OutletBit) {
 
 @interface Outlets : NSObject
 
-@property (nonatomic, readwrite) int bits;
+@property (nonatomic, readwrite) NSUInteger bits;
 
-- (BOOL)hasOutletToDegrees:(int)degrees;
+- (Outlets *)initWithBits:(NSUInteger)bits;
+- (BOOL)hasOutletToDegrees:(NSUInteger)degrees;
 
 @end
