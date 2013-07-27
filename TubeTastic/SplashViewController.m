@@ -51,13 +51,13 @@
     SplashView *splashView = [[SplashView alloc] initWithFrame:appFrame];
     splashView.backgroundColor = [UIColor blueColor];
     self.view = splashView;
-    TileView *tileView1 = [[TileView alloc] initWithFrame:CGRectMake(20, 40, 60, 60)];
+    TileView *tileView1 = [[TileView alloc] initWithFrame:CGRectMake(0, 40, 100, 100)];
     tileView1.tile = [[SourceTile alloc] initForBoard:nil withCol:0 withRow:0];
     [self.view addSubview:tileView1];
-    TileView *tileView2 = [[TileView alloc] initWithFrame:CGRectMake(80, 40, 60, 60)];
+    TileView *tileView2 = [[TileView alloc] initWithFrame:CGRectMake(100, 40, 100, 100)];
     tileView2.tile = [[TubeTile alloc] initForBoard:nil withCol:0 withRow:0];
     [self.view addSubview:tileView2];
-    TileView *tileView3 = [[TileView alloc] initWithFrame:CGRectMake(140, 40, 60, 60)];
+    TileView *tileView3 = [[TileView alloc] initWithFrame:CGRectMake(200, 40, 100, 100)];
     tileView3.tile = [[SinkTile alloc] initForBoard:nil withCol:0 withRow:0];
     [self.view addSubview:tileView3];
 }

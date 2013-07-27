@@ -53,11 +53,17 @@ static TileRenderer *singleton;
         float cornerRadius = padding * 2.0;
         float leftX = padding;
         float rightX = tileSize - padding;
+        float midX = (rightX - leftX) * 0.5;
         float topY = rightX;
         float bottomY = padding;
-        float outerSize = topY - bottomY;
-//        int innerSize = outerSize - (cornerRadius * 2);
-        CGContextFillRect(contextRef, CGRectMake(leftX, bottomY, outerSize, outerSize));
+        float midY = (topY - bottomY) * 0.5;
+        CGContextSetStrokeColorWithColor(contextRef, backColor.CGColor);
+        CGContextMoveToPoint(contextRef, leftX, topY - cornerRadius);
+        CGContextAddArcToPoint(contextRef, leftX, bottomY, midX, bottomY, cornerRadius);
+        CGContextAddArcToPoint(contextRef, rightX, bottomY, rightX, midY, cornerRadius);
+        CGContextAddArcToPoint(contextRef, rightX, topY, midX, topY, cornerRadius);
+        CGContextAddArcToPoint(contextRef, leftX, topY, leftX, midY, cornerRadius);
+        CGContextFillPath(contextRef);
     }
 }
 
