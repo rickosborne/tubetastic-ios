@@ -55,7 +55,7 @@
     tileView1.tile = [[SourceTile alloc] initForBoard:nil withCol:0 withRow:0];
     [self.view addSubview:tileView1];
     TileView *tileView2 = [[TileView alloc] initWithFrame:CGRectMake(100, 40, 100, 100)];
-    tileView2.tile = [[TubeTile alloc] initForBoard:nil withCol:0 withRow:0];
+    tileView2.tile = [[TubeTile alloc] initForBoard:nil withCol:0 withRow:0 withBits:15];
     [self.view addSubview:tileView2];
     TileView *tileView3 = [[TileView alloc] initWithFrame:CGRectMake(200, 40, 100, 100)];
     tileView3.tile = [[SinkTile alloc] initForBoard:nil withCol:0 withRow:0];
