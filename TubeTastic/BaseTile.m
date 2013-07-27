@@ -13,16 +13,7 @@
 #import "OutletOffset.h"
 
 @implementation BaseTile
-{
-    int _colNum;
-    int _rowNum;
-    int _id;
-    GameBoard* _board;
-    Power _power;
-    Outlets* _outlets;
-    int _outletRotation;
-    TileWatcher* _watcher;
-}
+
 @synthesize power = _power, colNum = _colNum, rowNum = _rowNum, id = _id, watcher = _watcher;
 
 + (void)initialize {

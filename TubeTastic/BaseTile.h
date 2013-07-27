@@ -11,6 +11,7 @@
 
 @class GameBoard;
 @class TileWatcher;
+@class Outlets;
 
 static const NSString* DIRECTION_NORTH = @"N";
 static const NSString* DIRECTION_SOUTH = @"S";
@@ -28,13 +29,24 @@ static const NSDictionary* outletOffsets;
 static const NSDictionary* outletRotationsReverse;
 
 @interface BaseTile : NSObject
-
+{
+@protected
+    int _colNum;
+    int _rowNum;
+    int _id;
+    GameBoard* _board;
+    Power _power;
+    Outlets* _outlets;
+    int _outletRotation;
+    TileWatcher* _watcher;
+}
 @property(nonatomic, readwrite) Power power;
 @property(nonatomic, readonly) int colNum;
 @property(nonatomic, readonly) int rowNum;
 @property(nonatomic, readonly) int id;
 @property(nonatomic, readonly) NSArray* connectedNeighbors;
 @property(nonatomic, readwrite) TileWatcher* watcher;
+@property(nonatomic, readwrite) int bits;
 
 int unrotateDegrees(int outletRotation, int degrees);
 int reverseDirectionDegrees(int degrees);
