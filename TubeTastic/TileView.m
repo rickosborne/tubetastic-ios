@@ -71,7 +71,6 @@ static TileView *singleton = nil;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"%@ touchesBegan", self);
     [super touchesBegan:touches withEvent:event];
     if (([_tile isKindOfClass:TubeTile.class]) && !self.boardView.isWorking && !_isVanishing && !_isDropping && !_isAppearing) {
         if (_isSpinning) {
@@ -145,10 +144,6 @@ static TileView *singleton = nil;
     }
     else {
         _totalSpins %= 4;
-//        if (_totalSpins == 0) {
-//            [self vanish];
-//        }
-        NSLog(@"spin complete totalSpins:%d", _totalSpins);
         _isSpinning = NO;
         if (_watcher) {
             [_watcher tileViewDidFinishSpinning:self];
@@ -167,13 +162,11 @@ static TileView *singleton = nil;
     if (_watcher) {
         [_watcher tileViewDidStartVanishing:self];
     }
-    const CGRect origFrame = self.frame;
-    [UIView animateWithDuration:TileView.DURATION_SPIN delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        self.frame = CGRectMake((self.frame.origin.x + self.frame.size.width) * 0.5, (self.frame.origin.y + self.frame.size.height) * 0.5, 0, 0);
-        self.transform = CGAffineTransformMakeRotation(TileView.DEGREES_SPIN * _totalSpins);
+    [UIView animateWithDuration:TileView.DURATION_VANISH delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.frame = CGRectMake(self.frame.origin.x + (self.frame.size.width * 0.5), self.frame.origin.y + (self.frame.size.height * 0.5), 0, 0);
+        self.alpha = 0.0;
     } completion:^(BOOL finished){
-        self.frame = origFrame;
-        self.transform = CGAffineTransformMakeRotation(TileView.DEGREES_SPIN * _totalSpins);
+        [_watcher tileViewDidFinishVanishing:self];
     }];
 }
 
@@ -188,7 +181,12 @@ static TileView *singleton = nil;
     if (_watcher) {
         [_watcher tileViewDidStartMoving:self];
     }
-    // todo: animation
+    [UIView animateWithDuration:TileView.DURATION_DROP delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.frame = CGRectMake(x, y, self.frame.size.width, self.frame.size.height);
+    } completion:^(BOOL finished){
+        _isDropping = NO;
+        [_watcher tileViewDidFinishMoving:self];
+    }];
 }
 
 - (void)appear {
@@ -196,7 +194,16 @@ static TileView *singleton = nil;
     if (_watcher) {
         [_watcher tileViewDidStartAppearing:self];
     }
-    // todo: animation
+    const CGRect origFrame = self.frame;
+    self.alpha = 0.0;
+    self.frame = CGRectMake(self.frame.origin.x + (self.frame.size.width * 0.5), self.frame.origin.y + (self.frame.size.height * 0.5), 0, 0);
+    [UIView animateWithDuration:TileView.DURATION_APPEAR delay:0.125 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.frame = origFrame;
+        self.alpha = 1.0;
+    } completion:^(BOOL finished){
+        _isAppearing = NO;
+        [_watcher tileViewDidFinishAppearing:self];
+    }];
 }
 
 + (float)SIZE_PADDING { return singleton.SIZE_PADDING; }
