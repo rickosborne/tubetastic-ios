@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 rick osborne dot org. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "TileView.h"
 #import "BoardView.h"
 #import "TileRenderer.h"
@@ -94,7 +93,7 @@ static TileView *singleton = nil;
 
 }
 
-- (void)tile:(BaseTile *)tile movedFromCol:(int)fromColNum fromRow:(int)fromRowNum toCol:(int)toColNum toRow:(int)toRowNum {
+- (void)tile:(BaseTile *)tile movedFromCol:(NSUInteger)fromColNum fromRow:(NSUInteger)fromRowNum toCol:(NSUInteger)toColNum toRow:(NSUInteger)toRowNum {
     [self dropToCol:toColNum andRow:toRowNum];
 }
 
@@ -170,12 +169,12 @@ static TileView *singleton = nil;
     }];
 }
 
-- (void)dropToCol:(int)colNum andRow:(int)rowNum {
+- (void)dropToCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
     BoardView *boardView = self.boardView;
     [self dropToCol:colNum andRow:rowNum forX:[boardView xForColNum:colNum] andY:[boardView yForRowNum:rowNum]];
 }
 
-- (void)dropToCol:(int)colNum andRow:(int)rowNum forX:(float)x andY:(float)y {
+- (void)dropToCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum forX:(float)x andY:(float)y {
     _isDropping = YES;
     _tile.power = PowerNone;
     if (_watcher) {

@@ -22,6 +22,10 @@ typedef NS_ENUM(NSUInteger, TileType) {
 
 @interface GameBoard : NSObject
 
-- (BaseTile*)tileForCol:(int)colNum andRow:(int)rowNum;
+@property (nonatomic, readwrite) id<GameBoardWatcher> watcher;
+@property (nonatomic, readonly) BOOL settled;
+
+- (GameBoard *)initWithColCount:(NSUInteger)colCount rowCount:(NSUInteger)rowCount;
+- (BaseTile*)tileForCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum;
 
 @end

@@ -6,6 +6,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Power.h"
+#import "EmptyTile.h"
 
 @class GameBoard;
 @class Outlets;
@@ -14,7 +15,7 @@
 @protocol TileWatcher
 
 - (void)tile:(BaseTile *)tile powerDidChangeFrom:(Power)fromPower to:(Power)toPower;
-- (void)tile:(BaseTile *)tile movedFromCol:(int)fromColNum fromRow:(int)fromRowNum toCol:(int)toColNum toRow:(int)toRowNum;
+- (void)tile:(BaseTile *)tile movedFromCol:(NSUInteger)fromColNum fromRow:(NSUInteger)fromRowNum toCol:(NSUInteger)toColNum toRow:(NSUInteger)toRowNum;
 - (void)tile:(BaseTile *)tile didSpinFrom:(int)fromDegrees to:(int)toDegrees;
 - (void)tileDidVanish:(BaseTile *)tile;
 
@@ -27,40 +28,32 @@ static const int DEGREES_WEST  = 270;
 static const int directionCount = 4;
 static const int outletDegrees[] = {DEGREES_NORTH, DEGREES_EAST, DEGREES_SOUTH, DEGREES_WEST};
 
-@interface BaseTile : NSObject
+@interface BaseTile : EmptyTile
 {
 @protected
-    int _colNum;
-    int _rowNum;
-    int _id;
-    __weak GameBoard* _board;
     Power _power;
     Outlets* _outlets;
     int _outletRotation;
     __weak id <TileWatcher> _watcher;
 }
 @property(nonatomic, readwrite) Power power;
-@property(nonatomic, readonly) int colNum;
-@property(nonatomic, readonly) int rowNum;
-@property(nonatomic, readonly) int id;
 @property(nonatomic, readonly, weak) NSArray* connectedNeighbors;
 @property(nonatomic, readwrite, weak) id <TileWatcher> watcher;
-@property(nonatomic, readwrite) int bits;
+@property(nonatomic, readwrite) NSUInteger bits;
 
 int unrotateDegrees(int outletRotation, int degrees);
 int reverseDirectionDegrees(int degrees);
 
-+ (int)makeIdFromCol:(int)colNum andRow:(int)rowNum;
-+ (int)degreesFromDirection:(NSString*)direction;
+//+ (int)degreesFromDirection:(NSString*)direction;
 
-- (id)initForBoard:(GameBoard*)board withCol:(int)colNum withRow:(int)rowNum;
-- (BaseTile*)neighborAtDegrees:(int)degrees;
+- (BaseTile *)initForBoard:(GameBoard*)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum;
+- (BaseTile *)neighborAtDegrees:(int)degrees;
 - (NSArray *)connectedNeighbors;
 - (BOOL)hasOutletToDegrees:(int)degrees;
 - (BOOL)isSourced;
 - (BOOL)isSunk;
 - (BOOL)isUnpowered;
-- (void)setCol:(int)colNum andRow:(int)rowNum;
+- (void)setCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum;
 - (void)spin;
 - (void)vanish;
 

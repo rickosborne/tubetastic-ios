@@ -10,7 +10,7 @@
 
 @implementation SinkTile
 
-- (id)initForBoard:(GameBoard*)board withCol:(int)colNum withRow:(int)rowNum {
+- (SinkTile *)initForBoard:(GameBoard*)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum {
     if (!(self = [super initForBoard:board withCol:colNum withRow:rowNum])) {
         return self;
     }
@@ -21,6 +21,6 @@
 
 - (void)setPower:(Power)power {}
 
-- (void)setBits:(int)bits {}
+- (void)setBits:(NSUInteger)bits {}
 
 @end

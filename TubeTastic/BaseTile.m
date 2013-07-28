@@ -11,7 +11,7 @@
 
 @implementation BaseTile
 
-@synthesize power = _power, colNum = _colNum, rowNum = _rowNum, id = _id, watcher = _watcher;
+@synthesize power = _power, watcher = _watcher;
 
 //+ (void)initialize {
 //    // yeah, this is ugly
@@ -59,10 +59,6 @@
 //    };
 //}
 
-+ (int)makeIdFromCol:(int)colNum andRow:(int)rowNum {
-    return (colNum * 1000) + rowNum;
-}
-
 //+ (int)degreesFromDirection:(NSString*)direction {
 //    for (int i = 0; i < directionCount; i++) {
 //        if ([outletDirections[i] isEqualToString:direction]) {
@@ -107,13 +103,9 @@ int unrotateDegrees(int outletRotation, int degrees) {
     }
 }
 
-- (BaseTile *)initForBoard:(GameBoard*)board withCol:(int)colNum withRow:(int)rowNum {
-    self = [super init];
+- (BaseTile *)initForBoard:(GameBoard*)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum {
+    self = [super initForBoard:board withCol:colNum withRow:rowNum];
     if (!self) { return self; }
-    _colNum = colNum;
-    _rowNum = rowNum;
-    _board = board;
-    _id = [BaseTile makeIdFromCol:colNum andRow:rowNum];
     _power = PowerNone;
     _watcher = nil;
     _outletRotation = 0;
@@ -173,10 +165,10 @@ int unrotateDegrees(int outletRotation, int degrees) {
 - (BOOL)isSourced { return (_power & PowerSource); }
 - (BOOL)isSunk { return (_power & PowerSink); }
 - (BOOL)isUnpowered { return (_power == PowerNone); }
-- (int)bits { return _outlets.bits; }
-- (void)setBits:(int)bits { _outlets.bits = bits; }
+- (NSUInteger)bits { return _outlets.bits; }
+- (void)setBits:(NSUInteger)bits { _outlets.bits = bits; }
 
-- (void)setCol:(int)colNum andRow:(int)rowNum {
+- (void)setCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
     int fromColNum = _colNum;
     int fromRowNum = _rowNum;
     if ((fromColNum != colNum) || (fromRowNum != rowNum)) {

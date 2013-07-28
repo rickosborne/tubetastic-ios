@@ -10,6 +10,6 @@
 
 @interface SourceTile : BaseTile
 
-- (id)initForBoard:(GameBoard *)board withCol:(int)colNum withRow:(int)rowNum;
+- (SourceTile *)initForBoard:(GameBoard *)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum;
 
 @end
