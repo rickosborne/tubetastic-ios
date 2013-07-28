@@ -164,7 +164,7 @@ static TileView *singleton = nil;
     }
     [UIView animateWithDuration:TileView.DURATION_VANISH delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.frame = CGRectMake(self.frame.origin.x + (self.frame.size.width * 0.5), self.frame.origin.y + (self.frame.size.height * 0.5), 0, 0);
-        self.alpha = 0.0;
+        self.alpha = TileView.OPACITY_VANISH;
     } completion:^(BOOL finished){
         [_watcher tileViewDidFinishVanishing:self];
     }];
@@ -195,11 +195,11 @@ static TileView *singleton = nil;
         [_watcher tileViewDidStartAppearing:self];
     }
     const CGRect origFrame = self.frame;
-    self.alpha = 0.0;
+    self.alpha = TileView.OPACITY_VANISH;
     self.frame = CGRectMake(self.frame.origin.x + (self.frame.size.width * 0.5), self.frame.origin.y + (self.frame.size.height * 0.5), 0, 0);
     [UIView animateWithDuration:TileView.DURATION_APPEAR delay:0.125 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.frame = origFrame;
-        self.alpha = 1.0;
+        self.alpha = TileView.OPACITY_APPEAR;
     } completion:^(BOOL finished){
         _isAppearing = NO;
         [_watcher tileViewDidFinishAppearing:self];
