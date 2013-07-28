@@ -137,7 +137,7 @@ static TileView *singleton = nil;
         _isSpinning = YES;
         _tile.power = PowerNone;
         _spinRemain--;
-        [UIView animateWithDuration:TileView.DURATION_SPIN animations:^{
+        [UIView animateWithDuration:TileView.DURATION_SPIN delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             self.transform = CGAffineTransformMakeRotation(TileView.DEGREES_SPIN * _totalSpins);
         } completion:^(BOOL finished){
             [self spin];
@@ -145,6 +145,9 @@ static TileView *singleton = nil;
     }
     else {
         _totalSpins %= 4;
+//        if (_totalSpins == 0) {
+//            [self vanish];
+//        }
         NSLog(@"spin complete totalSpins:%d", _totalSpins);
         _isSpinning = NO;
         if (_watcher) {
@@ -164,7 +167,14 @@ static TileView *singleton = nil;
     if (_watcher) {
         [_watcher tileViewDidStartVanishing:self];
     }
-    // todo: animation
+    const CGRect origFrame = self.frame;
+    [UIView animateWithDuration:TileView.DURATION_SPIN delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        self.frame = CGRectMake((self.frame.origin.x + self.frame.size.width) * 0.5, (self.frame.origin.y + self.frame.size.height) * 0.5, 0, 0);
+        self.transform = CGAffineTransformMakeRotation(TileView.DEGREES_SPIN * _totalSpins);
+    } completion:^(BOOL finished){
+        self.frame = origFrame;
+        self.transform = CGAffineTransformMakeRotation(TileView.DEGREES_SPIN * _totalSpins);
+    }];
 }
 
 - (void)dropToCol:(int)colNum andRow:(int)rowNum {
