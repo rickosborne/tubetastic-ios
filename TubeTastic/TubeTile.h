@@ -9,7 +9,7 @@
 
 @interface TubeTile : BaseTile
 
-- (id)initForBoard:(GameBoard *)board withCol:(int)colNum withRow:(int)rowNum;
-- (TubeTile *)initForBoard:(GameBoard *)board withCol:(int)colNum withRow:(int)rowNum withBits:(NSUInteger)bits;
+- (id)initForBoard:(GameBoard *)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum;
+- (TubeTile *)initForBoard:(GameBoard *)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum withBits:(NSUInteger)bits;
 
 @end

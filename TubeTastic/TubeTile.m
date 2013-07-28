@@ -13,15 +13,19 @@
 
 }
 
-- (TubeTile *)initForBoard:(GameBoard *)board withCol:(int)colNum withRow:(int)rowNum {
+- (TubeTile *)initForBoard:(GameBoard *)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum {
     if (!(self = [super initForBoard:board withCol:colNum withRow:rowNum])) { return self; }
     _outlets = [OutletProbability randomOutlets];
     return self;
 }
 
-- (TubeTile *)initForBoard:(GameBoard *)board withCol:(int)colNum withRow:(int)rowNum withBits:(NSUInteger)bits {
+- (TubeTile *)initForBoard:(GameBoard *)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum withBits:(NSUInteger)bits {
     if (!(self = [super initForBoard:board withCol:colNum withRow:rowNum])) { return self; }
-    _outlets.bits = bits;
+    if (bits > 0) {
+        _outlets.bits = bits;
+    } else {
+        _outlets = [OutletProbability randomOutlets];
+    }
     return self;
 }
 

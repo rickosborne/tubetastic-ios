@@ -8,4 +8,8 @@
 
 
 @interface BoardSweeper : NSObject
+
+
+- (TileChangeSet *)sweepBoard:(GameBoard *)board;
+
 @end

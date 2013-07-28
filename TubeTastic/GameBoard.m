@@ -7,6 +7,9 @@
 #import "GameBoard.h"
 #import "TileChange.h"
 #import "BoardSweeper.h"
+#import "TubeTile.h"
+#import "SourceTile.h"
+#import "SinkTile.h"
 
 
 @implementation GameBoard {
@@ -68,18 +71,87 @@
     [self sweepUntilSettled];
 }
 
-- (void)setTile:(EmptyTile *)tile forCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
+- (EmptyTile *)setTile:(EmptyTile *)tile forCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
     if ((colNum < _colCount) && (rowNum < _rowCount)) {
         [_board replaceObjectAtIndex:[self indexForCol:colNum andRow:rowNum] withObject:tile];
+        if (!tile.isEmpty && (tile.colNum != colNum) && (tile.rowNum != rowNum)) {
+            [(BaseTile *)tile setCol:colNum andRow:rowNum];
+        }
+    }
+    return tile;
+}
 
+- (EmptyTile *)setNewTileOfType:(TileType)tileType forCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum withBits:(NSUInteger)bits {
+    EmptyTile *tile;
+    switch (tileType) {
+        case TileTypeTube:
+            if (bits > 0) {
+                tile = [[TubeTile alloc] initForBoard:self withCol:colNum withRow:rowNum withBits:bits];
+            } else {
+                tile = [[TubeTile alloc] initForBoard:self withCol:colNum withRow:rowNum];
+            }
+            break;
+        case TileTypeSource:
+            tile = [[SourceTile alloc] initForBoard:self withCol:colNum withRow:rowNum];
+            break;
+        case TileTypeSink:
+            tile = [[SinkTile alloc] initForBoard:self withCol:colNum withRow:rowNum];
+            break;
+        default:
+            tile = [EmptyTile empty];
+            break;
+    }
+    return [self setTile:tile forCol:colNum andRow:rowNum];
+}
+
+- (void)setScore:(NSUInteger)score {
+    NSUInteger oldScore = _score;
+    if (score == oldScore) { return; }
+    _score = score;
+    if (_watcher) {
+        [_watcher scoreDidChangeFrom:oldScore to:score];
     }
 }
 
-- (void)setNewTileOfType:(TileType)tileType forCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum withBits:(NSUInteger)bits {
+- (void)addScore:(NSUInteger)score {
+    [self setScore:_score + score];
 }
 
 - (void)sweepUntilSettled {
+    while (!_settled) {
+        [self powerSweep];
+    }
+}
 
+- (TileChangeSet *)powerSweep {
+    TileChangeSet *changes = [_sweeper sweepBoard:self];
+    for (TileChangePower *tilePower in changes.powered) {
+        if (!tilePower.tile.isEmpty) {
+            [tilePower.tile setPower:tilePower.power];
+        }
+    }
+    for (TubeTile *tile in changes.vanished) {
+        if (!tile.isEmpty) {
+            [self setTile:[EmptyTile empty] forCol:tile.colNum andRow:tile.rowNum];
+            [tile vanish];
+        }
+    }
+    for (TileChangeMove *move in changes.moved) {
+        if (!move.tile.isEmpty) {
+            [self setTile:move.tile forCol:move.toCol andRow:move.toRow];
+            [move.tile setCol:move.toCol andRow:move.toRow];
+        }
+    }
+    for (TileChangeAppear *appear in changes.appeared) {
+        [self setNewTileOfType:TileTypeTube forCol:appear.colNum andRow:appear.rowNum withBits:0];
+    }
+    if (_settled) {
+        [self addScore:changes.vanished.count];
+    } else if ((changes.appeared.count == 0) && (changes.vanished.count == 0) && (changes.moved.count == 0)) {
+        _settled = YES;
+        return nil;
+    }
+    return changes;
 }
 
 @end
