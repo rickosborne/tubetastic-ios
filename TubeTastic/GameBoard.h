@@ -7,6 +7,18 @@
 #import <Foundation/Foundation.h>
 #import "BaseTile.h"
 
+typedef NS_ENUM(NSUInteger, TileType) {
+    TileTypeSource = 1,
+    TileTypeTube   = 2,
+    TileTypeSink   = 3
+};
+
+@protocol GameBoardWatcher
+
+- (void)scoreDidChangeFrom:(NSUInteger)fromScore to:(NSUInteger)toScore;
+
+@end
+
 
 @interface GameBoard : NSObject
 
