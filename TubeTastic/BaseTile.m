@@ -147,7 +147,7 @@ int unrotateDegrees(int outletRotation, int degrees) {
     return connected;
 }
 
-- (BaseTile*)neighborAtDegrees:(int)degrees {
+- (EmptyTile *)neighborAtDegrees:(int)degrees {
     OutletOffset *offset = [OutletOffset makeForDegrees:degrees];
     return [_board tileForCol:_colNum + offset.col andRow:_rowNum + offset.row];
 }

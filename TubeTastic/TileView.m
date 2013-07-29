@@ -81,7 +81,7 @@ static TileView *singleton = nil;
             }
         }
         _totalSpins++;
-        [_tile spin];
+        [(TubeTile *)_tile spin];
     }
 }
 
@@ -109,12 +109,14 @@ static TileView *singleton = nil;
     // todo
 }
 
-- (void)setTile:(BaseTile *)tile {
-    if (_tile) {
-        _tile.watcher = nil;
+- (void)setTile:(EmptyTile *)tile {
+    if (_tile && !_tile.isEmpty) {
+        [(BaseTile*)_tile setWatcher:nil];
     }
     _tile = tile;
-    _tile.watcher = self;
+    if (_tile && !_tile.isEmpty) {
+        [(BaseTile*)_tile setWatcher:self];
+    }
 }
 
 - (void)setFrame:(CGRect)frame {
@@ -133,7 +135,7 @@ static TileView *singleton = nil;
     [boardView interruptSweep];
     if (_spinRemain > 0) {
         _isSpinning = YES;
-        _tile.power = PowerNone;
+        [(TubeTile *) _tile setPower:PowerNone];
         _spinRemain--;
         [UIView animateWithDuration:TileView.DURATION_SPIN delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             self.transform = CGAffineTransformMakeRotation(TileView.DEGREES_SPIN * _totalSpins);
@@ -157,7 +159,7 @@ static TileView *singleton = nil;
 
 - (void)vanish {
     _isVanishing = YES;
-    _tile.power = PowerNone;
+    [(TubeTile *) _tile setPower:PowerNone];
     if (_watcher) {
         [_watcher tileViewDidStartVanishing:self];
     }
@@ -176,7 +178,7 @@ static TileView *singleton = nil;
 
 - (void)dropToCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum forX:(float)x andY:(float)y {
     _isDropping = YES;
-    _tile.power = PowerNone;
+    [(TubeTile *) _tile setPower:PowerNone];
     if (_watcher) {
         [_watcher tileViewDidStartMoving:self];
     }

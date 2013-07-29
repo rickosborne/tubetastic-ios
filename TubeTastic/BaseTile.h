@@ -47,7 +47,7 @@ int reverseDirectionDegrees(int degrees);
 //+ (int)degreesFromDirection:(NSString*)direction;
 
 - (BaseTile *)initForBoard:(GameBoard*)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum;
-- (BaseTile *)neighborAtDegrees:(int)degrees;
+- (EmptyTile *)neighborAtDegrees:(int)degrees;
 - (NSArray *)connectedNeighbors;
 - (BOOL)hasOutletToDegrees:(int)degrees;
 - (BOOL)isSourced;

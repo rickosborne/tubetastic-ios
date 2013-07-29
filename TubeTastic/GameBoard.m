@@ -25,6 +25,9 @@
 }
 @synthesize watcher = _watcher;
 @synthesize settled = _settled;
+@synthesize colCount = _colCount;
+@synthesize rowCount = _rowCount;
+@synthesize score = _score;
 
 - (GameBoard *)initWithColCount:(NSUInteger)colCount rowCount:(NSUInteger)rowCount {
     if (!(self = [super init])) { return self; }
@@ -47,9 +50,9 @@
     return (rowNum * _colCount) + colNum;
 }
 
-- (BaseTile *)tileForCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
+- (EmptyTile *)tileForCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
     if ((colNum < _colCount) && (rowNum < _rowCount)) {
-        return (BaseTile *) [_board objectAtIndex:[self indexForCol:colNum andRow:rowNum]];
+        return (EmptyTile *) [_board objectAtIndex:[self indexForCol:colNum andRow:rowNum]];
     }
     return nil;
 }
@@ -58,8 +61,8 @@
     _settled = false;
     for (NSUInteger rowNum = 0; rowNum < _rowCount; rowNum++) {
         for (NSUInteger colNum = 0; colNum < _colCount; colNum++) {
-            BaseTile *tile = [self tileForCol:colNum andRow:rowNum];
-            if (tile) {
+            EmptyTile *tile = [self tileForCol:colNum andRow:rowNum];
+            if (tile && !tile.isEmpty) {
                 [self setTile:[EmptyTile empty] forCol:colNum andRow:rowNum];
             }
             TileType tileType = TileTypeTube;
