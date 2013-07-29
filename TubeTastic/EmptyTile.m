@@ -31,7 +31,7 @@ static EmptyTile *_empty;
     _colNum = colNum;
     _rowNum = rowNum;
     _board = board;
-    _id = [BaseTile makeIdFromCol:colNum andRow:rowNum];
+    _id = [EmptyTile makeIdFromCol:colNum andRow:rowNum];
     return self;
 }
 

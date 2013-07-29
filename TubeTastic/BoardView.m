@@ -170,7 +170,7 @@ static const double DELAY_SWEEP = 0.125;
     }
     if ([self notifyListenersOfEvent:BoardViewEventTilesWillAppear] != BoardViewEventResponseYeahIHandledThatForYou) {
         _ready = NO;
-        for (TileChangeAppear *appearance : _tileChanges.appeared) {
+        for (TileChangeAppear *appearance in _tileChanges.appeared) {
             EmptyTile *tile = [_gameBoard tileForCol:appearance.colNum andRow:appearance.rowNum];
             if (tile && !tile.isEmpty) {
                 [[self createTileViewForCol:appearance.colNum andRow:appearance.rowNum withTile:(BaseTile *)tile] appear];

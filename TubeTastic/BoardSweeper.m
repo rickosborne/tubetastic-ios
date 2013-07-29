@@ -5,9 +5,15 @@
 
 
 #import "BoardSweeper.h"
+#import "TileChange.h"
+#import "GameBoard.h"
 
 
 @implementation BoardSweeper {
 
 }
+- (TileChangeSet *)sweepBoard:(GameBoard *)board {
+    return nil;
+}
+
 @end

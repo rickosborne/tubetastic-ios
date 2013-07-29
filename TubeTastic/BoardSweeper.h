@@ -6,6 +6,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class TileChangeSet;
+@class GameBoard;
 
 @interface BoardSweeper : NSObject
 
