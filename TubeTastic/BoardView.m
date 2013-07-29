@@ -60,7 +60,7 @@ static const double DELAY_SWEEP = 0.125;
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-    [self resizeToFitFrame:frame];
+    [self resizeToFitFrame:self.bounds];
 }
 
 - (float)fixScoreBoard {
@@ -97,6 +97,7 @@ static const double DELAY_SWEEP = 0.125;
     _gameBoard = gameBoard;
     _colCount = gameBoard.colCount;
     _rowCount = gameBoard.rowCount;
+    [self resizeToFitFrame:self.bounds];
     _animatableCount = (_colCount - 2) * _rowCount;
     _dropping  = [[NSMutableSet alloc] initWithCapacity:_animatableCount];
     _appearing = [[NSMutableSet alloc] initWithCapacity:_animatableCount];
@@ -106,6 +107,7 @@ static const double DELAY_SWEEP = 0.125;
     for (NSUInteger tileNum = 0; tileNum < _rowCount * _colCount; tileNum++) {
         [_tileViews addObject:NSNull.null];
     }
+    [self addGameViews];
     _gameBoard.watcher = self;
 }
 
@@ -123,7 +125,7 @@ static const double DELAY_SWEEP = 0.125;
 
 - (void)setTileView:(TileView *)tileView forCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
     if ((colNum < _colCount) && (rowNum < _rowCount)) {
-        NSObject *tileObject = tileView ? NSNull.null : tileView;
+        NSObject *tileObject = tileView ? tileView : NSNull.null;
         [_tileViews replaceObjectAtIndex:[self indexForCol:colNum andRow:rowNum] withObject:tileObject];
     }
 }
@@ -370,6 +372,5 @@ static const double DELAY_SWEEP = 0.125;
         [self readyForSweep];
     }
 }
-
 
 @end

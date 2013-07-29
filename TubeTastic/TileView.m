@@ -66,7 +66,9 @@ static TileView *singleton = nil;
 
 - (void)drawRect:(CGRect)rect
 {
-    [TileRenderer drawTile:_tile inContext:UIGraphicsGetCurrentContext() withBounds:rect];
+    if (_tile && !_tile.isEmpty) {
+        [TileRenderer drawTile:(BaseTile *)_tile inContext:UIGraphicsGetCurrentContext() withBounds:rect];
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

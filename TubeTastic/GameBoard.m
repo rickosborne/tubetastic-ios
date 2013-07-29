@@ -36,7 +36,7 @@
     _board = [[NSMutableArray alloc] initWithCapacity:colCount * rowCount];
     for (NSUInteger rowNum = 0; rowNum < _rowCount; rowNum++) {
         for (NSUInteger colNum = 0; colNum < _colCount; colNum++) {
-            [self setTile:[EmptyTile empty] forCol:colNum andRow:rowNum];
+            [_board addObject:[EmptyTile empty]];
         }
     }
     _score = 0;

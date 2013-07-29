@@ -16,7 +16,6 @@ static const float SCALE_OVERSIZE = 1;
 @interface TileRenderer : NSObject
 
 
-+ (void)drawRoundedBoxInContext:(CGContextRef)contextRef withBounds:(CGRect)bounds andRadius:(float)cornerRadius;
 + (void)drawTile:(BaseTile *)tile inContext:(CGContextRef)contextRef withBounds:(CGRect)bounds;
 
 @end

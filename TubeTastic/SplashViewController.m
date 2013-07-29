@@ -11,6 +11,8 @@
 #import "SourceTile.h"
 #import "SinkTile.h"
 #import "TubeTile.h"
+#import "GameBoard.h"
+#import "BoardView.h"
 
 @interface SplashViewController ()
 
@@ -48,6 +50,7 @@
     SplashView *splashView = [[SplashView alloc] initWithFrame:appFrame];
     splashView.backgroundColor = [UIColor blackColor];
     self.view = splashView;
+    /*
     TileView *tileView1 = [[TileView alloc] initWithFrame:CGRectMake(0, 40, 100, 100)];
     tileView1.tile = [[SourceTile alloc] initForBoard:nil withCol:0 withRow:0];
     [self.view addSubview:tileView1];
@@ -57,6 +60,13 @@
     TileView *tileView3 = [[TileView alloc] initWithFrame:CGRectMake(200, 40, 100, 100)];
     tileView3.tile = [[SinkTile alloc] initForBoard:nil withCol:0 withRow:0];
     [self.view addSubview:tileView3];
+    */
+    GameBoard *gameBoard = [[GameBoard alloc] initWithColCount:7 rowCount:9];
+    [gameBoard randomizeTiles];
+    BoardView *boardView = [[BoardView alloc] initWithFrame:self.view.bounds];
+    gameBoard.watcher = boardView;
+    boardView.gameBoard = gameBoard;
+    [self.view addSubview:boardView];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {
