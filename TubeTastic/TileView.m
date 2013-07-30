@@ -66,7 +66,7 @@ static TileView *singleton = nil;
 
 - (void)drawRect:(CGRect)rect
 {
-    if (_tile && !_tile.isEmpty) {
+    if (_tile) {
         [TileRenderer drawTile:(BaseTile *)_tile inContext:UIGraphicsGetCurrentContext() withBounds:rect];
     }
 }
@@ -111,13 +111,13 @@ static TileView *singleton = nil;
     // todo
 }
 
-- (void)setTile:(EmptyTile *)tile {
-    if (_tile && !_tile.isEmpty) {
-        [(BaseTile*)_tile setWatcher:nil];
+- (void)setTile:(BaseTile *)tile {
+    if (_tile) {
+        [_tile setWatcher:nil];
     }
     _tile = tile;
-    if (_tile && !_tile.isEmpty) {
-        [(BaseTile*)_tile setWatcher:self];
+    if (_tile) {
+        [_tile setWatcher:self];
     }
 }
 

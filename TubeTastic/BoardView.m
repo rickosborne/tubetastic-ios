@@ -173,8 +173,8 @@ static const double DELAY_SWEEP = 0.125;
     if ([self notifyListenersOfEvent:BoardViewEventTilesWillAppear] != BoardViewEventResponseYeahIHandledThatForYou) {
         _ready = NO;
         for (TileChangeAppear *appearance in _tileChanges.appeared) {
-            EmptyTile *tile = [_gameBoard tileForCol:appearance.colNum andRow:appearance.rowNum];
-            if (tile && !tile.isEmpty) {
+            BaseTile *tile = [_gameBoard tileForCol:appearance.colNum andRow:appearance.rowNum];
+            if (tile) {
                 [[self createTileViewForCol:appearance.colNum andRow:appearance.rowNum withTile:(BaseTile *)tile] appear];
             }
         }
@@ -301,13 +301,11 @@ static const double DELAY_SWEEP = 0.125;
     for (NSUInteger rowNum = 0; rowNum < _rowCount; rowNum++) {
         for (NSUInteger colNum = 0; colNum < _colCount; colNum++) {
             TileView *tileView = [self getTileViewForCol:colNum andRow:rowNum];
-            EmptyTile *tile = [_gameBoard tileForCol:colNum andRow:rowNum];
-            if (tileView && (tileView.tile == tile)) {
+            BaseTile *tile = [_gameBoard tileForCol:colNum andRow:rowNum];
+            if (tileView && tile && (tileView.tile == tile)) {
                 [self addSubview:tileView];
-            } else {
-                if (tile && !tile.isEmpty) {
-                    [self createTileViewForCol:colNum andRow:rowNum withTile:(BaseTile *)tile];
-                }
+            } else if (tile) {
+                [self createTileViewForCol:colNum andRow:rowNum withTile:tile];
             }
         }
     }

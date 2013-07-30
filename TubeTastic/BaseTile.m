@@ -11,62 +11,24 @@
 
 @implementation BaseTile
 
-@synthesize power = _power, watcher = _watcher;
+@synthesize colNum = _colNum, rowNum = _rowNum, id = _id, power = _power, watcher = _watcher;
 
-//+ (void)initialize {
-//    // yeah, this is ugly
-//    NSNumber *degreesNorth = [NSNumber numberWithInt:DEGREES_NORTH];
-//    NSNumber *degreesEast  = [NSNumber numberWithInt:DEGREES_EAST];
-//    NSNumber *degreesSouth = [NSNumber numberWithInt:DEGREES_SOUTH];
-//    NSNumber *degreesWest  = [NSNumber numberWithInt:DEGREES_WEST];
-//    directionFromDegrees = @{
-//            degreesNorth: DIRECTION_NORTH,
-//            degreesEast : DIRECTION_EAST,
-//            degreesSouth: DIRECTION_SOUTH,
-//            degreesWest : DIRECTION_WEST
-//    };
-//    outletRotationsReverse = @{
-//            degreesNorth: @{
-//                    [NSNumber numberWithInt:(DEGREES_NORTH + DEGREES_NORTH) % 360]: degreesNorth,
-//                    [NSNumber numberWithInt:(DEGREES_NORTH + DEGREES_EAST)  % 360]: degreesEast,
-//                    [NSNumber numberWithInt:(DEGREES_NORTH + DEGREES_SOUTH) % 360]: degreesSouth,
-//                    [NSNumber numberWithInt:(DEGREES_NORTH + DEGREES_WEST)  % 360]: degreesWest,
-//            },
-//            degreesEast: @{
-//                    [NSNumber numberWithInt:(DEGREES_EAST  + DEGREES_NORTH) % 360]: degreesNorth,
-//                    [NSNumber numberWithInt:(DEGREES_EAST  + DEGREES_EAST)  % 360]: degreesEast,
-//                    [NSNumber numberWithInt:(DEGREES_EAST  + DEGREES_SOUTH) % 360]: degreesSouth,
-//                    [NSNumber numberWithInt:(DEGREES_EAST  + DEGREES_WEST)  % 360]: degreesWest,
-//            },
-//            degreesSouth: @{
-//                    [NSNumber numberWithInt:(DEGREES_SOUTH + DEGREES_NORTH) % 360]: degreesNorth,
-//                    [NSNumber numberWithInt:(DEGREES_SOUTH + DEGREES_EAST)  % 360]: degreesEast,
-//                    [NSNumber numberWithInt:(DEGREES_SOUTH + DEGREES_SOUTH) % 360]: degreesSouth,
-//                    [NSNumber numberWithInt:(DEGREES_SOUTH + DEGREES_WEST)  % 360]: degreesWest,
-//            },
-//            degreesSouth: @{
-//                    [NSNumber numberWithInt:(DEGREES_WEST  + DEGREES_NORTH) % 360]: degreesNorth,
-//                    [NSNumber numberWithInt:(DEGREES_WEST  + DEGREES_EAST)  % 360]: degreesEast,
-//                    [NSNumber numberWithInt:(DEGREES_WEST  + DEGREES_SOUTH) % 360]: degreesSouth,
-//                    [NSNumber numberWithInt:(DEGREES_WEST  + DEGREES_WEST)  % 360]: degreesWest,
-//            }
-//    };
-//    outletOffsets = @{
-//            degreesNorth: [OutletOffset makeForDegrees:DEGREES_NORTH],
-//            degreesEast : [OutletOffset makeForDegrees:DEGREES_EAST],
-//            degreesSouth: [OutletOffset makeForDegrees:DEGREES_SOUTH],
-//            degreesWest : [OutletOffset makeForDegrees:DEGREES_WEST]
-//    };
-//}
++ (NSUInteger)makeIdFromCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
+    return (colNum * 1000) + rowNum;
+}
 
-//+ (int)degreesFromDirection:(NSString*)direction {
-//    for (int i = 0; i < directionCount; i++) {
-//        if ([outletDirections[i] isEqualToString:direction]) {
-//            return outletDegrees[i];
-//        }
-//    }
-//    return 0;
-//}
+- (BaseTile *)initForBoard:(GameBoard*)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum {
+    if (!(self = [super init])) { return self; }
+    _colNum = colNum;
+    _rowNum = rowNum;
+    _board = board;
+    _id = [BaseTile makeIdFromCol:colNum andRow:rowNum];
+    _power = PowerNone;
+    _watcher = nil;
+    _outletRotation = 0;
+    _outlets = [[Outlets alloc] init];
+    return self;
+}
 
 int reverseDirectionDegrees(int degrees) {
     switch (degrees) {
@@ -103,16 +65,6 @@ int unrotateDegrees(int outletRotation, int degrees) {
     }
 }
 
-- (BaseTile *)initForBoard:(GameBoard*)board withCol:(NSUInteger)colNum withRow:(NSUInteger)rowNum {
-    self = [super initForBoard:board withCol:colNum withRow:rowNum];
-    if (!self) { return self; }
-    _power = PowerNone;
-    _watcher = nil;
-    _outletRotation = 0;
-    _outlets = [[Outlets alloc] init];
-    return self;
-}
-
 - (NSString*)description {
     NSMutableString *connected = [[NSMutableString alloc] initWithFormat:@"%@ %d,%d %@", self.class, _colNum, _rowNum, _outlets];
     for (int degreesNum = 0; degreesNum < directionCount; degreesNum++) {
@@ -147,7 +99,7 @@ int unrotateDegrees(int outletRotation, int degrees) {
     return connected;
 }
 
-- (EmptyTile *)neighborAtDegrees:(int)degrees {
+- (BaseTile *)neighborAtDegrees:(int)degrees {
     OutletOffset *offset = [OutletOffset makeForDegrees:degrees];
     return [_board tileForCol:_colNum + offset.col andRow:_rowNum + offset.row];
 }

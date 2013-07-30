@@ -38,7 +38,6 @@
 		FBF02C6DBA5E4918F7F921F5 /* BaseTile.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF02E2CBF7C33596BC0B5D8 /* BaseTile.m */; };
 		FBF02EAF9F852F763FB10E12 /* Outlets.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF02EFC29C65A37D5D0A3C6 /* Outlets.m */; };
 		FBF02EDBF1EF8294890CAEA7 /* GamePrefs.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF020B7A4F50586FB54A216 /* GamePrefs.m */; };
-		FBF02F7F0353EBF28D571805 /* EmptyTile.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF028B9E816E550E700AB93 /* EmptyTile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +76,6 @@
 		FBF027D837C443B443DA1B35 /* OutletProbability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutletProbability.h; sourceTree = "<group>"; };
 		FBF02858041ADC9EA00C9466 /* OutletOffset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutletOffset.m; sourceTree = "<group>"; };
 		FBF028978A420F0F532D1AB4 /* TileChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileChange.h; sourceTree = "<group>"; };
-		FBF028B9E816E550E700AB93 /* EmptyTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyTile.m; sourceTree = "<group>"; };
 		FBF02974D4335CA2A0D4D0F4 /* SinkTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinkTile.h; sourceTree = "<group>"; };
 		FBF029B1BC92AF7C4ADE2947 /* SinkTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinkTile.m; sourceTree = "<group>"; };
 		FBF029B5E664F7419C9BF697 /* TileChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileChange.m; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 		FBF02DCE7C1F71F2AB136368 /* TileRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileRenderer.h; sourceTree = "<group>"; };
 		FBF02DE3A926793EA5D6FD8A /* TubeTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TubeTile.h; sourceTree = "<group>"; };
 		FBF02E2CBF7C33596BC0B5D8 /* BaseTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTile.m; sourceTree = "<group>"; };
-		FBF02E9827C57ECD54D5A83C /* EmptyTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyTile.h; sourceTree = "<group>"; };
 		FBF02EFC29C65A37D5D0A3C6 /* Outlets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Outlets.m; sourceTree = "<group>"; };
 		FBF02F373C7B0188AA574414 /* SplashView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashView.m; sourceTree = "<group>"; };
 		FBF02F676CEA498522787A99 /* BaseTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTile.h; sourceTree = "<group>"; };
@@ -192,8 +189,6 @@
 				FBF028978A420F0F532D1AB4 /* TileChange.h */,
 				FBF02A4385DCF3D6A498AE87 /* BoardSweeper.m */,
 				FBF02B74C32C3673ABE7D2F9 /* BoardSweeper.h */,
-				FBF028B9E816E550E700AB93 /* EmptyTile.m */,
-				FBF02E9827C57ECD54D5A83C /* EmptyTile.h */,
 				FBF023A64757DA127A41B8EC /* ScoreKeeper.m */,
 				FBF02C3BF3B5F9F4FD9269C1 /* ScoreKeeper.h */,
 				FBF02A5B2884E752953E4D77 /* ScoreBoardView.m */,
@@ -303,7 +298,6 @@
 				FBF02B1802B79B2D8B900DA5 /* OutletProbability.m in Sources */,
 				FBF021BA9405AE8F675887CC /* TileChange.m in Sources */,
 				FBF024877C6CEB0BD4F57551 /* BoardSweeper.m in Sources */,
-				FBF02F7F0353EBF28D571805 /* EmptyTile.m in Sources */,
 				FBF02C4BE8890B95C5AD478E /* ScoreKeeper.m in Sources */,
 				FBF0206CC0273A274360D4F2 /* ScoreBoardView.m in Sources */,
 			);

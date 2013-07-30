@@ -29,7 +29,7 @@
 @interface TileView : UIView <TileWatcher> {
 @protected
     float _padding;
-    EmptyTile *_tile;
+    BaseTile *_tile;
     float _midpoint;
     float _size;
     NSUInteger _totalSpins;
@@ -48,7 +48,7 @@
 @property (nonatomic, readwrite, weak) id<TileViewWatcher> watcher;
 @property (nonatomic, readonly) float size;
 //@property (nonatomic, readwrite) TileRenderer *renderer;
-@property (nonatomic, readwrite) EmptyTile *tile;
+@property (nonatomic, readwrite) BaseTile *tile;
 
 @property (nonatomic, readwrite) float SIZE_PADDING;
 @property (nonatomic, readwrite) float SIZE_ARCWIDTH;

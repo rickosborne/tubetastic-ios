@@ -36,7 +36,7 @@
     _board = [[NSMutableArray alloc] initWithCapacity:colCount * rowCount];
     for (NSUInteger rowNum = 0; rowNum < _rowCount; rowNum++) {
         for (NSUInteger colNum = 0; colNum < _colCount; colNum++) {
-            [_board addObject:[EmptyTile empty]];
+            [_board addObject:[NSNull null]];
         }
     }
     _score = 0;
@@ -50,9 +50,12 @@
     return (rowNum * _colCount) + colNum;
 }
 
-- (EmptyTile *)tileForCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
+- (BaseTile *)tileForCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
     if ((colNum < _colCount) && (rowNum < _rowCount)) {
-        return (EmptyTile *) [_board objectAtIndex:[self indexForCol:colNum andRow:rowNum]];
+        BaseTile *tile = (BaseTile *) [_board objectAtIndex:[self indexForCol:colNum andRow:rowNum]];
+        if (tile && [tile isKindOfClass:BaseTile.class]) {
+            return tile;
+        }
     }
     return nil;
 }
@@ -61,9 +64,9 @@
     _settled = false;
     for (NSUInteger rowNum = 0; rowNum < _rowCount; rowNum++) {
         for (NSUInteger colNum = 0; colNum < _colCount; colNum++) {
-            EmptyTile *tile = [self tileForCol:colNum andRow:rowNum];
-            if (tile && !tile.isEmpty) {
-                [self setTile:[EmptyTile empty] forCol:colNum andRow:rowNum];
+            BaseTile *tile = [self tileForCol:colNum andRow:rowNum];
+            if (tile) {
+                [self setTile:nil forCol:colNum andRow:rowNum];
             }
             TileType tileType = TileTypeTube;
             if (colNum == 0) { tileType = TileTypeSource; }
@@ -74,18 +77,19 @@
     [self sweepUntilSettled];
 }
 
-- (EmptyTile *)setTile:(EmptyTile *)tile forCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
+- (BaseTile *)setTile:(BaseTile *)tile forCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum {
     if ((colNum < _colCount) && (rowNum < _rowCount)) {
-        [_board replaceObjectAtIndex:[self indexForCol:colNum andRow:rowNum] withObject:tile];
-        if (!tile.isEmpty && (tile.colNum != colNum) && (tile.rowNum != rowNum)) {
-            [(BaseTile *)tile setCol:colNum andRow:rowNum];
+        NSObject *tileObject = tile ? tile : [NSNull null];
+        [_board replaceObjectAtIndex:[self indexForCol:colNum andRow:rowNum] withObject:tileObject];
+        if (tile && (tile.colNum != colNum) && (tile.rowNum != rowNum)) {
+            [tile setCol:colNum andRow:rowNum];
         }
     }
     return tile;
 }
 
-- (EmptyTile *)setNewTileOfType:(TileType)tileType forCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum withBits:(NSUInteger)bits {
-    EmptyTile *tile;
+- (BaseTile *)setNewTileOfType:(TileType)tileType forCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum withBits:(NSUInteger)bits {
+    BaseTile *tile;
     switch (tileType) {
         case TileTypeTube:
             if (bits > 0) {
@@ -101,7 +105,7 @@
             tile = [[SinkTile alloc] initForBoard:self withCol:colNum withRow:rowNum];
             break;
         default:
-            tile = [EmptyTile empty];
+            tile = nil;
             break;
     }
     return [self setTile:tile forCol:colNum andRow:rowNum];
@@ -129,18 +133,18 @@
 - (TileChangeSet *)powerSweep {
     TileChangeSet *changes = [_sweeper sweepBoard:self];
     for (TileChangePower *tilePower in changes.powered) {
-        if (!tilePower.tile.isEmpty) {
+        if (tilePower.tile) {
             [tilePower.tile setPower:tilePower.power];
         }
     }
     for (TubeTile *tile in changes.vanished) {
-        if (!tile.isEmpty) {
-            [self setTile:[EmptyTile empty] forCol:tile.colNum andRow:tile.rowNum];
+        if (tile) {
+            [self setTile:nil forCol:tile.colNum andRow:tile.rowNum];
             [tile vanish];
         }
     }
     for (TileChangeMove *move in changes.moved) {
-        if (!move.tile.isEmpty) {
+        if (move.tile) {
             [self setTile:move.tile forCol:move.toCol andRow:move.toRow];
             [move.tile setCol:move.toCol andRow:move.toRow];
         }

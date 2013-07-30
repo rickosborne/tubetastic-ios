@@ -5,7 +5,7 @@
 
 
 #import <Foundation/Foundation.h>
-#import "EmptyTile.h"
+#import "BaseTile.h"
 
 @class TileChangeSet;
 
@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, TileType) {
 @property (nonatomic, readonly) NSUInteger score;
 
 - (GameBoard *)initWithColCount:(NSUInteger)colCount rowCount:(NSUInteger)rowCount;
-- (EmptyTile *)tileForCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum;
+- (BaseTile *)tileForCol:(NSUInteger)colNum andRow:(NSUInteger)rowNum;
 
 - (void)randomizeTiles;
 
