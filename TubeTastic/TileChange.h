@@ -23,7 +23,8 @@
 
 @property (nonatomic, readonly) Power power;
 
-- (id)initWithTile:(BaseTile *)tile andPower:(Power)power;
++ (TileChangePower *)makeWithTile:(BaseTile *)tile andPower:(Power)power;
+- (TileChangePower *)initWithTile:(BaseTile *)tile andPower:(Power)power;
 
 @end
 
@@ -36,7 +37,8 @@
 @property (nonatomic, readonly) NSUInteger toCol;
 @property (nonatomic, readonly) NSUInteger toRow;
 
-- (id)initWithTile:(BaseTile *)tile fromCol:(NSUInteger)fromCol fromRow:(NSUInteger)fromRow toCol:(NSUInteger)toCol toRow:(NSUInteger)toRow;
++ (TileChangeMove *)makeWithTile:(BaseTile *)tile fromCol:(NSUInteger)fromCol fromRow:(NSUInteger)fromRow toCol:(NSUInteger)toCol toRow:(NSUInteger)toRow;
+- (TileChangeMove *)initWithTile:(BaseTile *)tile fromCol:(NSUInteger)fromCol fromRow:(NSUInteger)fromRow toCol:(NSUInteger)toCol toRow:(NSUInteger)toRow;
 
 @end
 
@@ -47,7 +49,8 @@
 @property (nonatomic, readonly) NSUInteger colNum;
 @property (nonatomic, readonly) NSUInteger rowNum;
 
-- (id)initWithTile:(BaseTile *)tile colNum:(NSUInteger)colNum rowNum:(NSUInteger)rowNum;
++ (TileChangeAppear *)makeWithTile:(BaseTile *)tile colNum:(NSUInteger)colNum rowNum:(NSUInteger)rowNum;
+- (TileChangeAppear *)initWithTile:(BaseTile *)tile colNum:(NSUInteger)colNum rowNum:(NSUInteger)rowNum;
 
 @end
 
@@ -55,10 +58,10 @@
 
 @interface TileChangeSet : NSObject
 
-@property (nonatomic, readonly) NSArray *moved;
-@property (nonatomic, readonly) NSArray *powered;
-@property (nonatomic, readonly) NSArray *vanished;
-@property (nonatomic, readonly) NSArray *appeared;
+@property (nonatomic, readonly) NSMutableArray *moved;
+@property (nonatomic, readonly) NSMutableArray *powered;
+@property (nonatomic, readonly) NSMutableArray *vanished;
+@property (nonatomic, readonly) NSMutableArray *appeared;
 
 - (TileChangeSet *)initWithMaxTileCount:(NSUInteger)maxTileCount;
 

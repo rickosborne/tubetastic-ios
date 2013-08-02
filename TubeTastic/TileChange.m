@@ -31,7 +31,11 @@
 
 @synthesize power = _power;
 
-- (id)initWithTile:(BaseTile *)tile andPower:(Power)power {
++ (TileChangePower *)makeWithTile:(BaseTile *)tile andPower:(Power)power {
+    return [[TileChangePower alloc] initWithTile:tile andPower:power];
+}
+
+- (TileChangePower *)initWithTile:(BaseTile *)tile andPower:(Power)power {
     if (!(self = [super initWithTile:tile])) { return self; }
     _power = power;
     return self;
@@ -52,6 +56,10 @@
 @synthesize fromRow = _fromRow;
 @synthesize toCol = _toCol;
 @synthesize toRow = _toRow;
+
++ (TileChangeMove *)makeWithTile:(BaseTile *)tile fromCol:(NSUInteger)fromCol fromRow:(NSUInteger)fromRow toCol:(NSUInteger)toCol toRow:(NSUInteger)toRow {
+    return [[TileChangeMove alloc] initWithTile:tile fromCol:fromCol fromRow:fromRow toCol:toCol toRow:toRow];
+}
 
 - (id)initWithTile:(BaseTile *)tile fromCol:(NSUInteger)fromCol fromRow:(NSUInteger)fromRow toCol:(NSUInteger)toCol toRow:(NSUInteger)toRow {
     if (!(self = [super initWithTile:tile])) { return self; }
@@ -74,7 +82,11 @@
 @synthesize colNum = _colNum;
 @synthesize rowNum = _rowNum;
 
-- (id)initWithTile:(BaseTile *)tile colNum:(NSUInteger)colNum rowNum:(NSUInteger)rowNum {
++ (TileChangeAppear *)makeWithTile:(BaseTile *)tile colNum:(NSUInteger)colNum rowNum:(NSUInteger)rowNum {
+    return [[TileChangeAppear alloc] initWithTile:tile colNum:colNum rowNum:rowNum];
+}
+
+- (TileChangeAppear *)initWithTile:(BaseTile *)tile colNum:(NSUInteger)colNum rowNum:(NSUInteger)rowNum {
     if (!(self = [super initWithTile:tile])) { return self; }
     _colNum = colNum;
     _rowNum = rowNum;
@@ -88,10 +100,10 @@
 @implementation TileChangeSet {
 
 @private
-    NSArray *_moved;
-    NSArray *_powered;
-    NSArray *_vanished;
-    NSArray *_appeared;
+    NSMutableArray *_moved;
+    NSMutableArray *_powered;
+    NSMutableArray *_vanished;
+    NSMutableArray *_appeared;
 }
 
 @synthesize moved = _moved;
